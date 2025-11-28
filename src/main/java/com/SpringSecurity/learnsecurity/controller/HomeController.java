@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
     
-    @GetMapping("/home")
+    @GetMapping("/index")
     public String sayHi(){
-        return "Hi spring security !!" ;
+        return "Hi spring security  using UserDetailManager !!" ;
     }
 }

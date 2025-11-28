@@ -1,20 +1,17 @@
 package com.SpringSecurity.learnsecurity.entity;
 
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "People")
+import lombok.Setter;
+import lombok.ToString;
+
+
+@Setter
+@ToString
 public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int userId;
+
     private String username;
     private String password;
+
+
 }

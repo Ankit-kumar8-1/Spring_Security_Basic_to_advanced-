@@ -2,15 +2,11 @@ package com.SpringSecurity.learnsecurity.config;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.AuthenticationProvider;
 
-import com.SpringSecurity.learnsecurity.service.UsersService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 public class SecurityConfig {
@@ -18,7 +14,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(UsersService service){
-        return  service;
+        return  ;
     }
 
 
@@ -27,13 +23,7 @@ public class SecurityConfig {
         return NoOpPasswordEncoder.getInstance();
     }
 
-    @Bean
-    public AuthenticationProvider authenticationProvider(UsersService service) {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(service);
-        provider.setPasswordEncoder(passwordEncoder());
-        return provider;
-    }
+
 
 }
 
