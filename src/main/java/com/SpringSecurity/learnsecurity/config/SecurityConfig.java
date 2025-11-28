@@ -1,5 +1,8 @@
 package com.SpringSecurity.learnsecurity.config;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationProvider;
 
+import com.SpringSecurity.learnsecurity.service.UsersService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
@@ -12,17 +15,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class SecurityConfig {
 
+
     @Bean
-    public UserDetailsService userDetailsService(){
-        var ud = new InMemoryUserDetailsManager();
-
-        var user1 = User.withUsername("ankit")
-                .password("123")
-                .authorities("read")
-                .build();
-
-        ud.createUser(user1);
-        return  ud;
+    public UserDetailsService userDetailsService(UsersService service){
+        return  service;
     }
 
 
@@ -31,5 +27,58 @@ public class SecurityConfig {
         return NoOpPasswordEncoder.getInstance();
     }
 
+    @Bean
+    public AuthenticationProvider authenticationProvider(UsersService service) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(service);
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    default / simple authentication
+//@Bean
+//public UserDetailsService userDetailsService(){
+//    var ud = new InMemoryUserDetailsManager();
+//
+//    var user1 = User.withUsername("ankit")
+//            .password("123")
+//            .authorities("read")
+//            .build();
+//
+//    ud.createUser(user1);
+//    return  ud;
+//}
